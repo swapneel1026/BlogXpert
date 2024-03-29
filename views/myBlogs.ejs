@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>My Blogs</title>
+  </head>
+  <body>
+    <%- include("./partials/nav.ejs") %> <%- include('./partials/scripts.ejs')
+    %>
+    <div class="d-flex justify-content-between px-4">
+      <h1>My Blogs</h1>
+      <div>
+        <a class="btn btn-primary" href="/blog/addnew">Add new Blog</a>
+      </div>
+    </div>
+
+    <% if (locals.myBlogs) { %>
+
+    <ul class="d-flex mt-3 mx-2 flex-wrap gap-5">
+      <% myBlogs.forEach(blog => { %>
+      <div class="card" style="width: 18rem">
+        <img
+          src="<%= blog.blogPhotoUrl %>"
+          class="card-img-top"
+          alt="..."
+          width="200"
+          height="200"
+        />
+        <div class="card-body">
+          <h5 class="card-title"><%= blog.title %></h5>
+          <p class="card-text"><%= blog.content %></p>
+          <a href="/blog/allblogs/<%= blog.id %>" class="btn btn-primary"
+            >Read more...</a
+          >
+        </div>
+      </div>
+      <% }) %>
+    </ul>
+    <% } %>
+  </body>
+</html>

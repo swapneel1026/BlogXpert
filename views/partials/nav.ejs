@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">BlogXpert</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mt-3" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/allblogs">All Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/myblogs">My Blogs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signup">Create Account</a>
+        </li>
+        <% if (!locals.user) { %>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/user/signin">Login</a>
+        </li>
+        <% } %>
+        <li class="nav-item dropdown" style="margin-left: 56rem">
+          <% if (locals.user) { %>
+          <a
+            class="text-capitalize nav-link dropdown-toggle"
+            style="color: brown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <%= user.fullName %>
+            <img
+              src="<%= user.profileImageUrl %>"
+              alt=""
+              height="40"
+              width="40"
+              style="border-radius: 50vh"
+            />
+          </a>
+          <% } %>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

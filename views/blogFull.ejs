@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <%- include("./partials/nav.ejs") %> <%- include('./partials/scripts.ejs')
+    %>
+    <div class="container">
+      <img
+        src="<%= blogWithId.blogPhotoUrl %>"
+        alt=""
+        width="1200"
+        height="600"
+      />
+      <h1 class="text-capitalize"><%= blogWithId.title %></h1>
+      <p class="text-capitalize"><%= blogWithId.content %></p>
+      <h2>Posted by: <%= blogWithId.createdBy.fullName %></h2>
+    </div>
+    <div class="container">
+      <h2>Comments (<%= commentWithId.length %>)</h2>
+    </div>
+    <% if (locals.commentWithId) { %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div
+          class="card shadow-0 border"
+          style="background-color: rgb(255, 250, 250)"
+        >
+          <div class="card-body p-4">
+            <form
+              action="/blog/comment/<%= blogWithId.id %>"
+              method="post"
+              class="mb-3"
+            >
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="floatingTextarea"
+                  name="commentBody"
+                  required
+                ></textarea>
+                <label for="floatingTextarea">Comments</label>
+              </div>
+              <button class="btn btn-primary mt-2" type="submit">
+                Add comment
+              </button>
+            </form>
+
+            <% commentWithId.forEach(comment => { %>
+            <div
+              class="card mb-4 border border-0"
+              style="background-color: darkslategray"
+            >
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                    <img
+                      src="<%= comment.postedBy.profileImageUrl %>"
+                      alt="avatar"
+                      width="25"
+                      height="25"
+                    />
+                    <p
+                      class="small mb-0 ms-2 text-capitalize"
+                      style="color: azure"
+                    >
+                      <%= comment.postedBy.fullName %>
+                    </p>
+                  </div>
+                </div>
+                <p class="mt-2" style="color: azure"><%= comment.comment %></p>
+              </div>
+            </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </body>
+</html>

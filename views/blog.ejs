@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <title>Homepage</title>
+  </head>
+  <body>
+    <%- include("./partials/nav.ejs") %> <%- include('./partials/scripts.ejs')
+    %>
+    <div class="container">
+      <h1>Add Blogs</h1>
+    </div>
+
+    <form action="/blog" method="post" enctype="multipart/form-data">
+      <div class="mb-3 container">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          placeholder="Write a title for your blog"
+          class="form-control"
+          id="title"
+          name="title"
+          aria-describedby="title"
+          required
+        />
+      </div>
+      <div class="container">
+        <label class="mb-3" for="content">Description</label>
+        <textarea
+          required
+          class="form-control"
+          name="content"
+          id="content"
+          rows="8"
+          placeholder="Write your blog description"
+        ></textarea>
+      </div>
+      <div class="mb-3 container">
+        <label for="blogPhotoUrl" class="form-label">Upload Cover Image</label>
+        <input
+          class="form-control"
+          name="blogPhotoUrl"
+          type="file"
+          id="blogPhotoUrl"
+        />
+      </div>
+      <div class="container mt-3">
+        <button class="btn btn-primary" type="submit">Add</button>
+      </div>
+    </form>
+  </body>
+</html>

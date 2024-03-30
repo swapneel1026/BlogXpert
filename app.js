@@ -14,7 +14,7 @@ mongoose
     console.log("mongodb connected...");
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err, "Cannot connect to mongodb");
   });
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
